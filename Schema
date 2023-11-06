@@ -1,0 +1,74 @@
+/*											                                                      SCHEMA PROGRAM
+										                                                      -----------------------
+
+		Purpose:- Using Schema Programming in apex we can get metadata information about an sObject, tab, fieldname,custom or std object, application list etc.
+			
+			Schema.getGlobalDescribe():- it's return all the object details of metadata.
+				ex:- Map<String, Schema.SobjectType> allObject = Schema.getGlobalDescribe();
+
+			Below are the some program :-  a). get all the object 
+										                 b). get all the custom object only
+										                 c). get all fields of particular object
+										                 d). get all picklist values of a field
+										                 e). get field acceable or all details.
+*/
+public class Schema_Practice {
+    
+    // GET ALLL THE OBJECT OF SALESFORCE
+    public static void getAllObjectOfSalesforce() {
+        Map<String, Schema.SobjectType> allObject = Schema.getGlobalDescribe();
+        Integer count = 0;
+        for(String printObject : allObject.keySet()) {
+            system.debug(printObject);
+            count++;
+        }
+        System.debug('\nTotalObject In my org='+count);
+    }
+    
+    //	GET ALL CUSTOM OBJECT 
+    public static void getCustomObject() {
+        Map<String, Schema.SobjectType> allObject = Schema.getGlobalDescribe();
+        Set<String> key = allObject.keySet();
+        for (String obj : key) {
+            Schema.SobjectType objectType = allObject.get(obj);
+            Schema.DescribeSobjectResult result = objectType.getDescribe();
+            if (result.isCustom()) {
+                System.debug(result.getName());
+            }
+        }
+    }
+    
+    // GET ALL FIELDS OF THE PARTICULAR OBJECT 
+    public static void getObjectAllFields() {
+        Schema.DescribeSobjectResult result = Account.SobjectType.getDescribe();
+        // Schema.DescribeSobjectResult :- it will hold the all properties of the object.
+        Map<String, Schema.sobjectField> fldMap = result.fields.getMap();
+        // result.fields.getMap():- it will give fields in the form of map.
+        Set<String> allFieldName = fldMap.keySet();
+        System.debug('All fields='+allFieldName);
+    }
+ 	//  GET PICKLIST VALUES   
+    public static void getPickListValue() {
+        List<String> pickListValue = new List<String>();
+        Schema.DescribeFieldResult result = Account.Industry.getDescribe(); 
+        // it will hold the industry field properties
+        if(result.getType() == Schema.DisplayType.PICKLIST) {
+            List<Schema.PicklistEntry> myList = result.getPicklistValues();
+            for (Schema.PicklistEntry entry : myList) {
+                pickListValue.add(entry.getLabel());
+            }
+        } 
+        System.debug('PicklistValue='+pickListValue);
+    }
+
+    // CHECK THE PROPERTIES ACCESSABLE CREATEABLE ETC.
+    public static void getProperties() {
+        Schema.DescribeSobjectResult result = Account.SobjectType.getDescribe();
+        Map<String, object> properties = new Map<String, Object>();
+        properties.put('Name', result.getName());
+        properties.put('Create', result.isCreateable());
+        properties.put('queryAccess', result.isQueryable());
+        System.debug('Properties='+properties); // Properties={Create=true, Name=Account, queryAccess=true}
+    }
+ 
+}
