@@ -1,0 +1,80 @@
+public class Notes_RestServices {
+
+    /* Description:- this class is used for creating the account from 3rd party application, i am providing url and will be 
+ * returned status and accountid after inserted in json format.
+    SADIQ */
+
+   // FOR POST METHOD
+/*  Workbench->loging->utilites->restexp
+ * Process of run:-  go to the workbench and login workbench and pass this url (/services/apexrest/createAccount) and this
+ * is a postmethod so we have to pass data from body in json format like that 
+ *  {"name" : "working",
+     "phone" : "123456789",
+     "industry" : "Banking"
+   } 
+
+   Output:- "{\n  \"Status\" : \"Success\",\n  \"AccountId\" : \"0015g00001Jn5SGAAZ\"\n}"
+
+*/
+	//FOR GET METHOD
+	/* Workbench->loging->utilites->restexp
+	 * Process of run:-  go to the workbench and login workbench and pass this url (/services/apexrest/createAccount) and this
+ 	* is a get method so we have to pass data from url itself  like that format.
+	/services/apexrest/createAccount/?name=getaccount&phone=123&industry=banking
+	label is case sensitive and data is not case sensitive. Name=sadiq
+*/
+/*
+@RestResource(urlmapping='/createAccount/*')
+global class RestApi_1st_example {
+    
+    @HttpPost
+    global static String createAccount(String name, String phone, String industry) {
+        System.JSONGenerator createJson = JSON.createGenerator(true);
+        createJson.writeStartObject();
+        try {
+            Account acc = new Account();
+            acc.Name = name;
+            acc.Phone = phone;
+            acc.Industry = industry;
+            insert acc;
+            createJson.writeStringField('Status', 'Success');
+            createJson.writeStringField('AccountId', acc.Id);            
+        }
+        catch(Exception e) {
+            createJson.writeStringField('Status', 'failed');
+            createJson.writeStringField('AccountId', e.getMessage());
+            
+        }
+        createJson.writeEndObject();
+        String result = createJson.getAsString();        
+        return result;
+    }
+    
+    @HttpGet
+    global static String createAccountThroughGet() {
+        RestRequest request = RestContext.request;// it will get the data from url
+        Map<String, String> urlData = request.params; // data will be stored in the map
+        System.JSONGenerator createJson = JSON.createGenerator(true);
+        createJson.writeStartObject();
+        try {
+            Account acc = new Account();
+            acc.Name = urlData.get('name');
+            acc.Phone = urlData.get('phone');
+            acc.Industry = urlData.get('industry');
+            insert acc;
+            createJson.writeStringField('Status', 'Success');
+            createJson.writeStringField('AccountId', acc.Id);            
+        }
+        catch(Exception e) {
+            createJson.writeStringField('Status', 'failed');
+            createJson.writeStringField('AccountId', e.getMessage());
+            
+        }
+        createJson.writeEndObject();
+        String result = createJson.getAsString();        
+        return result;        
+    }
+
+}*/
+    
+}
