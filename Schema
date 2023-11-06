@@ -1,16 +1,17 @@
-/*											                                                      SCHEMA PROGRAM
-										                                                      -----------------------
+/*						SCHEMA PROGRAM
+					   -----------------------
 
-		Purpose:- Using Schema Programming in apex we can get metadata information about an sObject, tab, fieldname,custom or std object, application list etc.
+		Purpose:- Using Schema Programming in apex we can get metadata information about an sObject, tab, fieldname,
+			 custom or std object, application list etc.
 			
 			Schema.getGlobalDescribe():- it's return all the object details of metadata.
 				ex:- Map<String, Schema.SobjectType> allObject = Schema.getGlobalDescribe();
 
 			Below are the some program :-  a). get all the object 
-										                 b). get all the custom object only
-										                 c). get all fields of particular object
-										                 d). get all picklist values of a field
-										                 e). get field acceable or all details.
+						       b). get all the custom object only
+						       c). get all fields of particular object
+						       d). get all picklist values of a field
+						       e). get field acceable or all details.
 */
 public class Schema_Practice {
     
