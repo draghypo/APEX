@@ -1,0 +1,39 @@
+                                                    List of URL to call from other application
+
+                                        ------------------------------------------------------------------
+
+ For Getting Access Token : - https://login.salesforce.com/services/oauth2/token?grant_type=password&client_id=3MVG9fe4g9fhX0E5f4PkHTcvvirir_AS7ZHYbd8Wl6Nva18JTWW6WxwPtYks8GpvV24ZbftRiTEZikFUcEAZL&client_secret=84FDF175DD7A0A55C84FB3C7631FB62E0945AC2875C0167E88EE0C1FAACFE3DB&username=munnan@popcornapps.com&password=Popcornapps@123MUJ75VCyiyWd9R4pXTgZfeWv
+
+
+
+For Inserting:-   https://popcornapps-c-dev-ed.my.salesforce.com/services/data/v51.0/sobjects/Account/
+                     Use POST Method and pass JSON body 
+
+                     Access Token.     Output:-  It will give output with id, success, error. 
+
+
+
+For Fetching :-     https://popcornapps-c-dev-ed.my.salesforce.com/services/data/v51.0/query?q=select Id, Name from                                                                                                                                                                                            Account
+                            Use GET Method with Access Token
+
+                            Output will be all the record of account will come.
+
+
+
+For Updating a Name of Account:- https://popcornapps-c-dev-ed.my.salesforce.com/services/data/v51.0/sobjects/Account/001J1000003QNdFIAW
+
+                                                        Use PATCH Method and pass access token 
+
+                                                       Pass the JSON Body what all field will be updated
+
+For Deleting a Account Record :- https://popcornapps-c-dev-ed.my.salesforce.com/services/data/v51.0/sobjects/Account/001J1000003QNdFIAW
+
+                                                     Use Delete Method and pass access token
+
+
+
+
+
+
+ 
+
